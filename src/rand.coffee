@@ -5,6 +5,8 @@ rand = do ->
 
   ( Generic.make "rand" )
 
+    .define [], -> Math.random()
+
     .define [ isIterable ], ( values ) ->
       values = Array.from values
       values[ rand values.length ]
@@ -24,6 +26,9 @@ pick2 = ( n ) ->
 wrand = do ->
 
   ( Generic.make "wrand" )
+
+    .define [ Object ], ( values ) ->
+      wrand Object.keys(), Object.values()
 
     .define [ isIterable, isIterable ], ( values, weights ) ->
       values = Array.from values
@@ -57,4 +62,15 @@ wrand = do ->
           i = j = k
       i
 
-export { rand, pick2, wrand }
+
+# generator variant of shuffle
+shuffle = ( ax ) ->
+  bx = [ ax... ]
+  i = bx.length
+  while i > 0
+    j = rand --i
+    yield bx[ j ]
+    bx[ j ] = bx[ i ]
+  return
+
+export { rand, pick2, wrand, shuffle }

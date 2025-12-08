@@ -12,8 +12,8 @@ importers:
         specifier: link:../fairfax
         version: link:../fairfax
       '@dashkite/generic':
-        specifier: ^0.9.18
-        version: 0.9.18
+        specifier: ^0.9.19
+        version: 0.9.19
       '@dashkite/joy':
         specifier: ^0.12.25
         version: 0.12.25
@@ -595,8 +595,8 @@ packages:
   '@dashkite/assert@0.1.4':
     resolution: {integrity: sha512-OLOzI/lA+EwCh6znSexGAG1V4bkaT5gU04xl6ApEluv5jICnHhinZ707MObu+jhVVJ9uHDDlG85O+Afn1aTQoQ==}
 
-  '@dashkite/generic@0.9.18':
-    resolution: {integrity: sha512-Iu35KDBQWhHHf2wU0P2U2aubcxv+9GQMs5hgxmTk53x4/Cjah+z03uaIL6MuEYwvtc8gtRq2/dJQNtd2npeB8A==}
+  '@dashkite/generic@0.9.19':
+    resolution: {integrity: sha512-6f0HtogQR3IPTT6XbL+d2a5y1GvJWrHFvlY86HiLggEErGyegbcGte5ZXZaQNRTXtkTpyuYw7LxrrkU1kq6Eqw==}
 
   '@dashkite/genie-clean@0.13.12':
     resolution: {integrity: sha512-/IU/APykA2p0xwjpQKPRoNXphehM1dsiI5eX02tOgJ53KRXPDsgi5cm4GztHthhvxFE0iWlQg9ZMVs6MW523JQ==}
@@ -2096,7 +2096,7 @@ snapshots:
     dependencies:
       '@dashkite/joy': 0.3.16
 
-  '@dashkite/generic@0.9.18':
+  '@dashkite/generic@0.9.19':
     dependencies:
       '@dashkite/joy': 0.7.0
 

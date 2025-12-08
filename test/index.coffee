@@ -5,6 +5,8 @@ import print from "@dashkite/amen-console"
 import {
   rand
   wrand
+  shuffle
+  randomly
   offset
 } from "../src"
 
@@ -15,9 +17,13 @@ do ->
       test "rand", [
 
         test "rand", ->
+
           assert "abc".includes rand "abc"
           assert "abc".includes rand "abc"
           assert "abc".includes rand "abc"
+
+          assert !( Number.isNaN rand())
+          assert rand() < 1
 
         test "wrand", ->
           weights = [ 0.5, 0.25, 0.125, 0.125 ]
@@ -34,8 +40,44 @@ do ->
               .map ( n, i ) -> Math.abs weights[ i ] - n/t
               .every ( delta ) -> delta < 0.01
 
+        test "shuffle", do ->
+
+          A = [ 1..5 ]
+          it = shuffle A
+
+          [
+
+            test "returns a generator", ->
+              assert it.next?
+            
+            test "produces a shuffled array", ->
+              B = [( new Set it )... ]
+              assert A.length == B.length
+              ( assert value in B ) for value in A
+              assert.notDeepEqual A, B
+
+            test "handles singleton and null arrays", ->
+              assert.deepEqual [ 0 ], Array.from shuffle [ 0 ]
+              assert.deepEqual [], Array.from shuffle []
+
+          ]
 
       ]
+
+      test "randomly", ->
+
+        class Foo extends randomly()
+          
+          constructor: ( @x = false ) ->
+            super()
+          
+          bar: -> 
+            @x = true
+            @
+              
+        foo = new Foo
+        for i in [1..10]
+          assert foo.randomly().bar().x?
 
       test "offset", [
 

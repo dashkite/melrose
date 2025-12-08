@@ -2,3 +2,6 @@ build
 node_modules
 .DS_Store
 .log
+
+.tempo/repos
+.tempo/logs

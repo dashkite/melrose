@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@dashkite/fairfax": "link:../fairfax",
-    "@dashkite/generic": "^0.9.18",
+    "@dashkite/generic": "^0.9.19",
     "@dashkite/joy": "^0.12.25"
   }
 }
