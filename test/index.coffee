@@ -4,6 +4,8 @@ import print from "@dashkite/amen-console"
 
 import {
   rand
+  pick2
+  pick
   wrand
   shuffle
   randomly
@@ -24,6 +26,18 @@ do ->
 
           assert !( Number.isNaN rand())
           assert rand() < 1
+
+        test "pick2", ->
+          for i in [ 0 ... 100 ]
+            result = pick2 5
+            assert.equal 2, result.length
+            assert result[ 0 ] != result[ 1 ]
+
+        test "pick", ->
+          for i in [ 0 ... 100 ]
+            result = new Set pick 5, [ 0 ... 20 ]
+            assert.equal 5, result.size
+
 
         test "wrand", ->
           weights = [ 0.5, 0.25, 0.125, 0.125 ]

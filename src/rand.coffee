@@ -1,5 +1,7 @@
 import Generic from "@dashkite/generic"
-import { isNumber, isIterable } from "@dashkite/joy/type"
+import { pipe, curry, binary } from "@dashkite/joy/function"
+import { isIterable } from "@dashkite/joy/type"
+import { take } from "@dashkite/river"
 
 rand = do ->
 
@@ -11,13 +13,30 @@ rand = do ->
       values = Array.from values
       values[ rand values.length ]
 
-    .define [ isNumber ], ( value ) ->
+    .define [ Number ], ( value ) ->
       ( Math.floor ( Math.random() * value ))
 
 pick2 = ( n ) ->
   a = rand n
   b = (( a + 1 + ( rand ( n - 1 ))) % n )
   [ a, b ]
+
+# generator variant of shuffle
+shuffle = ( ax ) ->
+  bx = [ ax... ]
+  i = bx.length
+  while i > 0
+    j = rand --i
+    yield bx[ j ]
+    bx[ j ] = bx[ i ]
+  return
+
+pick = ( m, values ) ->
+  do pipe [
+    -> shuffle values
+    take m
+    Array.from
+  ]
 
 # select index (or a corresponding value) based on a given
 # set of weights. uses binary search to get O(log n)
@@ -62,15 +81,4 @@ wrand = do ->
           i = j = k
       i
 
-
-# generator variant of shuffle
-shuffle = ( ax ) ->
-  bx = [ ax... ]
-  i = bx.length
-  while i > 0
-    j = rand --i
-    yield bx[ j ]
-    bx[ j ] = bx[ i ]
-  return
-
-export { rand, pick2, wrand, shuffle }
+export { rand, pick2, pick, wrand, shuffle }
